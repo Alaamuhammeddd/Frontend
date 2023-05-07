@@ -1,0 +1,12 @@
+.auction-image{
+    width: 100%;
+    border-radius: 10px;
+    height: 400px;
+}
+ .auction-time{
+    color: #212529;
+ }
+
+ .auction-category{
+    color: #9b9d9e;
+ }
