@@ -2,14 +2,14 @@ import React , { useState,useRef} from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
-//import { getAuthuser } from "../../helper/storage";
+import { getAuthUser } from "../../helper/Storage";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
 const UpdateAuctions = () => {
  let {id} = useParams();
  const [message, setMessage] = useState("");
-  //const auth = getAuthUser();
+  const auth = getAuthUser();
   const [auction, setAuction] = useState({
     name: "",
     description: "",
@@ -39,7 +39,12 @@ const UpdateAuctions = () => {
 
 
     axios
-    .put("http://localhost:4000/auction/"+id, auction)
+    .put("http://localhost:4000/auction/"+ id, auction,
+    {
+      headers: {
+      token: auth.token,
+      },
+    },)
     .then((response) => {
       setMessage(response.data.message)
         setAuction({
@@ -100,7 +105,7 @@ const UpdateAuctions = () => {
             onChange={(e) => setAuction({ ...auction, current_bid: e.target.value })}
             type="text"
             required
-            placeholder="Current_bid"
+            placeholder="Auction Price"
           />
         </Form.Group>
         <Form.Group className="mb-3">
