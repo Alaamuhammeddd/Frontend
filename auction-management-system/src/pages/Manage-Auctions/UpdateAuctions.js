@@ -17,7 +17,7 @@ const UpdateAuctions = () => {
     end_date:"", 
     category:"", 
     current_bid:"", 
-    saller_id:"",
+    saller_id: auth.id,
     err: [],
     loading: false,
     success: null,
@@ -27,15 +27,26 @@ const UpdateAuctions = () => {
   const updateNewAuction = (e) => {
     e.preventDefault();
 
-  setAuction({ ...auction, loading: true, image_url: e.target.value });
-  setAuction({ ...auction, loading: true, name: e.target.value });
-  setAuction({ ...auction, loading: true, description: e.target.value });
-  setAuction({ ...auction, loading: true, start_date: e.target.value });
-  setAuction({ ...auction, loading: true, end_date: e.target.value });
-  setAuction({ ...auction, loading: true, category: e.target.value });
-  setAuction({ ...auction, loading: true, current_bid: e.target.value });
-  const file = image_url.current.files[0];
-  console.log(file);
+    setAuction({ ...auction, loading: true, image_url: e.target.value });
+    setAuction({ ...auction, loading: true, name: e.target.value });
+    setAuction({ ...auction, loading: true, description: e.target.value });
+    setAuction({ ...auction, loading: true, start_date: e.target.value });
+    setAuction({ ...auction, loading: true, end_date: e.target.value });
+    setAuction({ ...auction, loading: true, category: e.target.value });
+    setAuction({ ...auction, loading: true, current_bid: e.target.value });
+  
+    const formData = new FormData();
+    formData.append("name", auction.name);
+    formData.append("description", auction.description);
+    formData.append("start_date", auction.start_date);
+    formData.append("end_date", auction.end_date);
+    formData.append("category", auction.category);
+    formData.append("current_bid", auction.current_bid);
+    formData.append("saller_id", auction.saller_id);
+  
+    if (image_url.current.files && image_url.current.files[0]) {
+      formData.append("image_url", image_url.current.files[0]);
+    }
 
 
     axios
@@ -54,9 +65,11 @@ const UpdateAuctions = () => {
           end_date:"", 
           category:"", 
           current_bid:"",
+          saller_id: auth.id,
           err: null,
           loading: false,
         });
+        image_url.current.files = null;
       })
       .catch((error) => {
         setMessage(error.response.data.message)

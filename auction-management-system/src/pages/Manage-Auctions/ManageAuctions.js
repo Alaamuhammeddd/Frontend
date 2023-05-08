@@ -8,7 +8,7 @@ import { getAuthUser } from "../../helper/Storage";
 const ManageAuctions = () =>{ 
   const auth = getAuthUser();
   const [auction, setAuction]= useState({
-    image_url: '',
+    image_url:'',
     name : '' ,
     description: '',
     start_date: '',
@@ -89,14 +89,13 @@ const ManageAuctions = () =>{
           <thead>
             <tr>
               <th>#</th>
-              <th> ID</th>
-              <th>name</th>
-              <th>description</th>
+              <th>Name</th>
+              <th>Description</th>
               <th>Start Date</th>
               <th>End date</th>
               <th> Category </th>
-              <th>current_bid</th>
-              <th>saller_id</th>
+              <th>Auction Price</th>
+              <th>Seller ID</th>
               <th>Action</th>
 
 
@@ -105,8 +104,7 @@ const ManageAuctions = () =>{
           <tbody>
           {Array.isArray(auction.results) && auction.results.map((item, index) => (
             <tr key= {index}>
-            <td></td>  
-              <td>{item.id}</td>
+            <td>{item.id}</td>
               <td>{item.name}</td>
               <td>{item.description}</td>
               <td>{new Date(item.start_date).toLocaleString()}</td>

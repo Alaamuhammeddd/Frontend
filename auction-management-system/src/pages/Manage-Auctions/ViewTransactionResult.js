@@ -4,8 +4,10 @@ import Table from 'react-bootstrap/Table';
 //import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
 import axios from "axios";
+import { getAuthUser } from "../../helper/Storage";
 
 const  ViewTransactionResult= () =>{
+  const auth = getAuthUser();
   const [transactions, setTransactions] = useState(
     {
       loading:false,
@@ -17,7 +19,13 @@ const  ViewTransactionResult= () =>{
   useEffect(() => {
     setTransactions({...transactions, loading: true, err:[]});
     axios
-     .get("http://localhost:4000/result", transactions)
+     .get("http://localhost:4000/result", 
+     {
+      headers: {
+      token: auth.token,
+      },
+    },
+    transactions)
      .then((resp) => { 
       console.log(resp);
       setTransactions ({...transactions, results:resp.data, loading:false, err:[]})

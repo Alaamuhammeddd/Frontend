@@ -84,11 +84,11 @@ const searchAuctions = (e) => {
 
             <AuctionCard 
             id = {auction.id}
-            image = {auction.image_url}
+            image_url = {auction.image_url}
             name={auction.name}
             description={auction.description}
-            start_date={auction.start_date}
-            end_date={auction.end_date}
+            start_date={new Date(auction.start_date).toLocaleString()}
+            end_date={new Date(auction.end_date).toLocaleString()}
             category={auction.category}
             current_bid={auction.current_bid}
             saller_id={auction.saller_id}/>

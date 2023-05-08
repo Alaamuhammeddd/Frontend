@@ -85,7 +85,7 @@ const ChosenAuction = () =>
           <>
           <div className="row">
         <div className="col-3">
-        <img className="auction-image" src="https://picsum.photos/200/300" alt="Auction"/>
+        <img className="auction-image" src={auction.result.image_url} alt="Auction"/>
         </div>
         <div className="col-9">
             <h3 className="title"> {auction.result.name} </h3>
@@ -94,7 +94,7 @@ const ChosenAuction = () =>
             <br/>
             <p className="auction-category">Category : {auction.result.category} </p>
             <br/>
-            <h5 className="auction-time"> Auction Time: {auction.result.start_date} - {auction.result.end_date}</h5>
+            <h5 className="auction-time"> Auction Time: {new Date(auction.result.start_date).toLocaleString()} - {new Date(auction.result.end_date).toLocaleString()}</h5>
             <br/>
             <h4 className="auction-current-price"> ${auction.result.current_bid}</h4>
 

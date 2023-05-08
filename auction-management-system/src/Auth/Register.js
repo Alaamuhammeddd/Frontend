@@ -99,7 +99,6 @@ const Register = () => {
                 aria-label="Select user type"
                   >
               <option >Select user type</option>
-              <option value="admin">Admin</option>
               <option value="seller">Seller</option>
               <option value="bidder">Bidder</option>
           </Form.Select>

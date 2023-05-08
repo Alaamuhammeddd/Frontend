@@ -12,13 +12,12 @@ const AuctionCard = (props) =>
       <Card.Img 
       className="card-img" 
       variant="top" 
-      src= "https://picsum.photos/200" />
+      src= {props.image_url} />
       <Card.Body>
         <Card.Title>{props.name}</Card.Title>
         <Card.Text> {props.description}
         </Card.Text>
-        <Card.Text className="category">
-        {props.category}
+        <Card.Text className="category"> Auction Category : {props.category}
         </Card.Text>
         <Card.Text className="auction-startDate"> {new Date(props.start_date).toLocaleString()}
         </Card.Text>
