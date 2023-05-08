@@ -43,14 +43,13 @@ const UpdateAuctions = () => {
     formData.append("category", auction.category);
     formData.append("current_bid", auction.current_bid);
     formData.append("saller_id", auction.saller_id);
-  
     if (image_url.current.files && image_url.current.files[0]) {
       formData.append("image_url", image_url.current.files[0]);
     }
 
 
     axios
-    .put("http://localhost:4000/auction/"+ id, auction,
+    .put("http://localhost:4000/auction/"+ id, formData,
     {
       headers: {
       token: auth.token,

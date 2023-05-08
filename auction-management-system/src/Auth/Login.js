@@ -28,7 +28,7 @@ const Login = () => {
       .then((resp) => {
         setLogin({ ...login, loading: false, err: [] });
         setAuthUser(resp.data);
-        navigate("/home");
+        navigate("/");
       })
       .catch((errors) => {
         console.log(errors.response);

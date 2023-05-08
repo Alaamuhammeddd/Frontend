@@ -5,6 +5,7 @@ import Table from 'react-bootstrap/Table';
 import Alert from "react-bootstrap/Alert";
 import axios from "axios";
 import { getAuthUser } from "../../helper/Storage";
+import '../../style/viewTransactionResults.css'
 
 const  ViewTransactionResult= () =>{
   const auth = getAuthUser();
@@ -40,7 +41,7 @@ const  ViewTransactionResult= () =>{
   }, [transactions.reload]);
   return (
 
-        <div className="Manage-Auctions p-5" >
+        <div className="transaction-results p-5" >
           <div className="header mb-5">
           {transactions.err.length > 0 && transactions.err.map((error, index) => (
           <Alert key={index} variant="danger" className="alert">

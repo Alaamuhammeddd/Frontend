@@ -25,7 +25,12 @@ const ManageAuctions = () =>{
  useEffect(() => {
   setAuction({ ...auction, loading: true });
   axios
-    .get("http://localhost:4000/auction/" + auction.saller_id)
+    .get("http://localhost:4000/auction/" + auction.saller_id,
+    {
+      headers:{
+        token: auth.token
+      }
+    })
     .then((resp) => {
       setAuction({ ...auction,
       results: resp.data,
@@ -36,7 +41,7 @@ const ManageAuctions = () =>{
       setAuction({
         ...auction,
         loading: false,
-        err: [{ message: err.response.data.error }],
+        err: [{ message: err.response.data.message }],
       });
     });
 }, [auction.reload]);
@@ -56,7 +61,7 @@ const ManageAuctions = () =>{
   });
     })
      .catch((err) => {
-      const error = err.response ? err.response.data.error : 'Something went wrong';
+      const error = err.response ? err.response.data.message : 'Something went wrong';
      setAuction({
           ...auction,
          loading: false,

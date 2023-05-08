@@ -24,9 +24,9 @@ const Header = () =>
 <Navbar bg="dark" variant="dark">
         <Container>
           <Navbar.Brand >
-          <Link className="nav-link" to={'/home'}>Elite Auctions</Link></Navbar.Brand>
+          <Link className="nav-link" to={'/'}>Elite Auctions</Link></Navbar.Brand>
           <Nav className="me-auto">
-
+        {/* UNAUTHENTICATED USER  */}
           {!auth && (
               <>
                 <Link className="nav-link" to={"/login"}>
@@ -37,6 +37,7 @@ const Header = () =>
                 </Link>
               </>
             )}
+            {/* AUTH SELLER */}
 
             {auth && auth.type === "seller" && (
               <>
@@ -47,7 +48,7 @@ const Header = () =>
               </Link>
               </>
             )}
-
+             {/* AUTH BIDDER */}
             {auth && auth.type === "bidder" && (
               <>
               <Link className="nav-link" to={'/auctions'}> All Auctions</Link>
@@ -57,6 +58,7 @@ const Header = () =>
               </>
             )}
 
+            {/* AUTH ADMIN */}
             {auth && auth.type === "admin" && (
               <>
               <Link className="nav-link" 
@@ -72,6 +74,7 @@ const Header = () =>
             )}
 
           </Nav>
+          
 
           <Nav className="ms-auto">
             {/* Authenticated Routes  */}

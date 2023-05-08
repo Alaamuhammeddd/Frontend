@@ -42,6 +42,7 @@ const ActivityHistory = () => {
       
       
         <div className='table-container'>
+        <h2 style={{ textAlign: "center" }}>Activity History</h2>
         {history.result && (
           <Table striped bordered hover variant="dark">
             <thead>

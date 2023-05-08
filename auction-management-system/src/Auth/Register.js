@@ -31,7 +31,7 @@ const Register = () => {
       .then((resp) => {
         setRegister({ ...register, loading: false, err: [] });
         setAuthUser(resp.data);
-        navigate("/home");
+        navigate("/");
       })
       .catch((errors) => {
         console.log(errors.response);

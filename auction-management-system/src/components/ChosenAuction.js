@@ -6,13 +6,15 @@ import Alert from 'react-bootstrap/Alert';
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Button from 'react-bootstrap/Button';
-// import { getAuthUser } from "../helper/Storage";
-
+import { getAuthUser } from "../helper/Storage";
+ import moment from 'moment';
 const ChosenAuction = () =>
 { 
-  // const auth = getAuthUser();
+  const auth = getAuthUser();
   let {id} = useParams();
   const [bid, setBid] = useState("");
+
+  const now = moment().format("YYYY-MM-DD HH:mm:ss");
 
   const [auction, setAuction] = useState(
   {
@@ -39,15 +41,34 @@ const ChosenAuction = () =>
   }, [auction.reload]);
 
   const handleBid = () => {
+    console.log(auth.id)
     setAuction({ ...auction, loading: true, err: [] });
     if (bid === "") {
       setAuction({ ...auction, loading: false, err: [{ message: "Please enter a bid amount" }] });
       return;
     }
+    const bidderId = parseInt(auth.id);
+    if (isNaN(bidderId) || !auth.id) {
+      setAuction({ ...auction, loading: false, err: [{ message: "Invalid bidder ID" }] });
+      return;
+    }
     axios
       .put('http://localhost:4000/auctions/' + id,
-      
-      { current_bid: bid })
+      {
+        current_bid: parseInt(bid),
+        transaction:{
+          amount: parseInt(bid),
+          auction_id: parseInt(id),
+          bidder_id: bidderId,
+          data:{now} ,
+        },
+      },
+      {
+        headers: {
+          token: auth.token,
+          "Content-Type" : "application/json"
+        },
+      })
       .then((response) => {
         console.log(response); 
         setAuction({ ...auction,

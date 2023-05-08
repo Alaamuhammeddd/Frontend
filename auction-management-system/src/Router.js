@@ -8,7 +8,7 @@ import PostingAuction from "./components/PostingAuction";
 import ActivityHistory from "./components/ActivityHistory";
 import Login from "./Auth/Login";
 import Register from "./Auth/Register";
-import Home from "./pages/home/home";
+import Home from "./pages/home/Home";
 import ManageAccounts from "./pages/Manage-Auctions/ManageAccounts";
 import ManageAuctions from "./pages/Manage-Auctions/ManageAuctions";
 import UpdateAuctions from "./pages/Manage-Auctions/UpdateAuctions"
@@ -20,7 +20,7 @@ import ViewTransactionResult from "./pages/Manage-Auctions/ViewTransactionResult
         element:<App/>,
         children: [
                {
-                   path: "/home",
+                   path: "",
                    element: <Home/>
                },
                   {
